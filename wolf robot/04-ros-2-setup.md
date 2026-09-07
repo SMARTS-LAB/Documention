@@ -18,15 +18,11 @@ To begin with, install Ubuntu 20.04 distribution on a laptop or a PC. Laptop is 
 
 Install the desktop version of Ubuntu from the link below:
 
-{% embed url="<https://releases.ubuntu.com/focal/>" %}
-Choose the Desktop version of Ubuntu
-{% endembed %}
+[Choose the Desktop version of Ubuntu](https://releases.ubuntu.com/focal/)
 
 Installing ROS 2 on Ubuntu means you need to run a set of commands in a particular sequence. A detailed explanation and steps are mentioned on ros.org website. If for some reason, you would want to take the longer way (and sometimes it's better to learn this way) of installation, follow the link on ros.org page to complete installation.
 
-{% embed url="<https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html>" %}
-Installing ROS 2 Foxy Fitzroy on Ubuntu Focal
-{% endembed %}
+[Installing ROS 2 Foxy Fitzroy on Ubuntu Focal](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
 
 To make things easier, we at VEEROBOT have created a script that performs all those activities in a sequence. The script installs ROS 2, ROS 2 dependencies, Colcon and few required python packages. To begin installation:
 
@@ -40,15 +36,14 @@ sudo bash ./install_ros2.sh
 
 The above script takes up-to 15 minutes depending on the speed of your machine. When prompted, type "Y" or "y" to continue installation. Once the installation is complete, a *`Installation Complete!`* confirmation message is shown. You may delete the installation file if required.
 
-{% hint style="info" %}
-The above script installs [colcon](https://colcon.readthedocs.io/en/released/) and also sets up the environment by sourcing
-
-<mark style="color:blue;">`source /opt/ros/$ROS_DISTRO/setup.bash`</mark>
-
-<mark style="color:blue;">`source /opt/ros/foxy/setup.bash # Specific to foxy`</mark>
-
-You may check the \~/.bashrc file to confirm if the above line is added to the file.
-{% endhint %}
+> [!NOTE]
+> The above script installs [colcon](https://colcon.readthedocs.io/en/released/) and also sets up the environment by sourcing
+>
+> `source /opt/ros/$ROS_DISTRO/setup.bash`
+>
+> `source /opt/ros/foxy/setup.bash # Specific to foxy`
+>
+> You may check the \~/.bashrc file to confirm if the above line is added to the file.
 
 If for some reason colcon is not installed by the script, then the below command may be used:
 
@@ -67,16 +62,15 @@ sudo apt upgrade -y
 
 There are few more packages required to be installed to make working with ROS easier:
 
-1. Install Git to access GitHub: <mark style="color:blue;">`sudo apt install git`</mark>
-2. Install VSCode: <mark style="color:blue;">`sudo snap install --classic code`</mark>
+1. Install Git to access GitHub: `sudo apt install git`
+2. Install VSCode: `sudo snap install --classic code`
 3. Extensions on VSCode:
    1. Remote – Development (from Microsoft)
    2. URDF (from smilerobotics)
    3. ROS - from Microsoft
 
-{% hint style="info" %}
-The tutorial assumes that the user name and machine name on development machine is <mark style="color:blue;">`dev@robot`</mark>. If you set a different name, change scripts in further tutorials accordingly.
-{% endhint %}
+> [!NOTE]
+> The tutorial assumes that the user name and machine name on development machine is `dev@robot`. If you set a different name, change scripts in further tutorials accordingly.
 
 ### Robot Machine Setup
 
@@ -90,9 +84,9 @@ Download Raspberry Pi Image in the below link. The image has following setup pre
 * ROS 2 (Foxy) : Installed with environment setup
 * OpenSSH : Server to talk to remote PC
 * Git : To download packages from GitHub
-* Network Setup : <mark style="color:blue;">`@192.168.1.xxx`</mark>requires reconfiguration if using a different network and IP address). The 'xxx' will be configured prior to delivery of robot and will be printed on the box.
-* User ID: <mark style="color:blue;">`wolf`</mark>
-* Password: <mark style="color:blue;">`wolf@123`</mark>
+* Network Setup : `@192.168.1.xxx`requires reconfiguration if using a different network and IP address). The 'xxx' will be configured prior to delivery of robot and will be printed on the box.
+* User ID: `wolf`
+* Password: `wolf@123`
 
 Since Raspberry Pi runs on headless mode (no GUI or Display), we need a way to access it.
 
@@ -105,7 +99,7 @@ sudo apt upgrade -y
 
 ### Wolf Robot Network Setup
 
-All our Wolf robots come with a travel network router <mark style="color:blue;">`Wolf_2.4G`</mark> and <mark style="color:blue;">`Wolf_5G`</mark> with default setup at 2.4Ghz and IP address as <mark style="color:blue;">`192.168.1.1`</mark> and username, password as <mark style="color:blue;">`wolf`</mark>and <mark style="color:blue;">`wolf@123`</mark>. If you have followed above setup and if the said router is connected, then connecting to pi is as simple as typing ssh <mark style="color:blue;">`pi@192.168.1.136`</mark> (or whatever IP address is mentioned on the box) on development machine. Enter the user ID (<mark style="color:blue;">`wolf`</mark>) and password (<mark style="color:blue;">`wolf@123`</mark>) of raspberry pi and it should be logged in. For multiple robots, you can edit and change the address in *yaml* file as described below. Hostname will generally be `rosbot`.
+All our Wolf robots come with a travel network router `Wolf_2.4G` and `Wolf_5G` with default setup at 2.4Ghz and IP address as `192.168.1.1` and username, password as `wolf`and `wolf@123`. If you have followed above setup and if the said router is connected, then connecting to pi is as simple as typing ssh `pi@192.168.1.136` (or whatever IP address is mentioned on the box) on development machine. Enter the user ID (`wolf`) and password (`wolf@123`) of raspberry pi and it should be logged in. For multiple robots, you can edit and change the address in *yaml* file as described below. Hostname will generally be `rosbot`.
 
 There are times when one needs to connect to a different WiFi adaptor, or if multiple robots are supposed to be controlled. In those cases, we need to manually configure Raspberry Pi. This requires users to remove the top plate of Wolf, connect a network cable, connect to wired network and access pi through local ssh, telnet or other means. Once connected, follow the below guide to change network settings:
 
@@ -134,7 +128,7 @@ network:
           password: "wifi-password"
 ```
 
-Change the <mark style="color:blue;">addresses</mark>, <mark style="color:blue;">`gateway4`</mark>, <mark style="color:blue;">`nameserver`</mark>, <mark style="color:blue;">`username`</mark> and <mark style="color:blue;">`password`</mark> as per your setup. y*aml* files follow strict indentation: 2 spaces per indent and do not tab.
+Change the addresses, `gateway4`, `nameserver`, `username` and `password` as per your setup. y*aml* files follow strict indentation: 2 spaces per indent and do not tab.
 
 If all goes well, type the following to apply the changes and you should have a working network connection:
 
@@ -178,14 +172,14 @@ ros2 run demo_nodes_cpp talker
 
 This runs a talker node (example) and sends (publishes) a message every second on the network. Any ROS 2 system on the same network can listen (subscribe) to this message.
 
-Open another terminal window and type ssh <mark style="color:blue;">`pi@192.168.1.136`</mark> and enter the credentials. This should connect developer machine to robot machine.
+Open another terminal window and type ssh `pi@192.168.1.136` and enter the credentials. This should connect developer machine to robot machine.
 
 ```sh
 source /opt/ros/foxy/setup.bash	#  on robot root directory
 ros2 run demo_nodes_cpp listener
 ```
 
-Now the terminal should echo the message received from the development machine. To keep things simple, we will call development machine as <mark style="color:blue;">`@dev`</mark> and robot machine as <mark style="color:blue;">`@robot`</mark> where both the terminals are connected on the development machine.
+Now the terminal should echo the message received from the development machine. To keep things simple, we will call development machine as `@dev` and robot machine as `@robot` where both the terminals are connected on the development machine.
 
 ### Creating Workspace
 
