@@ -6,21 +6,19 @@ In this section, we will understand how to build a URDF(Unified Robotics Descrip
 
 On your development machine, download all the contents of this Github page.
 
-{% embed url="<https://github.com/VEEROBOT/wolf-ros2-examples.git>" %}
-Wolf Tutorials
-{% endembed %}
+[Wolf Tutorials](https://github.com/VEEROBOT/wolf-ros2-examples.git)
 
 The download will have multiple folders each starting with t#. Save it in a location away from your workspace. (Eg: Downloads or Home directory)
 
 If you do not have a GitHub account already, create one and login. Setup ssh connection between your machine and GitHub so that any modifications on either side can be in sync. For more information, follow the guide below:
 
-{% embed url="<https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>" %}
+[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ```
 cd dev_ws/src
 ```
 
-From the downloaded folder, copy <mark style="color:blue;">`wolf-robot`</mark> folder to <mark style="color:blue;">`src`</mark> folder in your workspace.
+From the downloaded folder, copy `wolf-robot` folder to `src` folder in your workspace.
 
 ```sh
 cp -r <downloaded_directory>/t1_urdf_creation/wolf-robot /dev_ws/src
@@ -38,7 +36,7 @@ Now we will build the workspace.
 colcon build --symlink-install #this builds all packages inside src
 ```
 
-If we now check contents (<mark style="color:blue;">`ls`</mark>)in our workspace <mark style="color:blue;">`cd /dev_ws`</mark>, we will find that there are other folders generated viz. <mark style="color:blue;">`build`</mark>, <mark style="color:blue;">`log`</mark>, <mark style="color:blue;">`install`</mark>. If colcon build says successful, our package is compiled correctly and we can run the package.
+If we now check contents (`ls`)in our workspace `cd /dev_ws`, we will find that there are other folders generated viz. `build`, `log`, `install`. If colcon build says successful, our package is compiled correctly and we can run the package.
 
 ### Visual Studio Code
 
@@ -46,7 +44,7 @@ The best way to edit files is using an IDE. VS Code helps in formatting and view
 
 ### Simulating our Robot in RVIZ2
 
-Run the below commands, each on a separate terminal. Before running, make sure to source the environment on each terminal by typing <mark style="color:blue;">`source install/setup.bash`</mark>. You may choose to add this to the bashrc file, but we will keep it like this for now.
+Run the below commands, each on a separate terminal. Before running, make sure to source the environment on each terminal by typing `source install/setup.bash`. You may choose to add this to the bashrc file, but we will keep it like this for now.
 
 ```sh
 ros2 launch wolf-robot rsp.launch.py # first terminal window

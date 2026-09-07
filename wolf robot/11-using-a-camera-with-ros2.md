@@ -2,11 +2,11 @@
 
 Wolf comes with a Raspberry Pi Camera attached to the front of the robot. Just like previous tutorials, we will run a script to visalize the world in 3D using simulation tools and then implement the same using a real camera.
 
-To start a camera interface, we need a camera driver node. The node communicates with whatever camera is attached to Wolf. That driver node then takes the data stream coming from the camera, and publishes it to a topic of type <mark style="color:blue;">`sensor_msgs/Image`</mark>. Since images use a lot of data, we may also need to compress them before sending via network from one system to another.
+To start a camera interface, we need a camera driver node. The node communicates with whatever camera is attached to Wolf. That driver node then takes the data stream coming from the camera, and publishes it to a topic of type `sensor_msgs/Image`. Since images use a lot of data, we may also need to compress them before sending via network from one system to another.
 
 ### Simulating Camera in Gazebo
 
-Copy<mark style="color:blue;">`wolf-robot`</mark> folder from <mark style="color:blue;">t6\_camera\_interface</mark> from your downloaded folder to source folder and compile. If you check the code in VSCode, you may observe that laser (LiDAR) is disabled. This is just to make sure we see the camera interface correctly.
+Copy`wolf-robot` folder from t6\_camera\_interface from your downloaded folder to source folder and compile. If you check the code in VSCode, you may observe that laser (LiDAR) is disabled. This is just to make sure we see the camera interface correctly.
 
 Install drivers required to communicate with camera.
 
@@ -17,7 +17,7 @@ sudo apt install ros-foxy-rmw-cyclonedds-cpp #hidden gem. Will avoid odom erros
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp #source this to check
 ```
 
-Add <mark style="color:blue;">`RMW_IMPLEMENTATION`</mark> to \~/.bashrc to source it on each new terminal.
+Add `RMW_IMPLEMENTATION` to \~/.bashrc to source it on each new terminal.
 
 ```sh
 sudo apt update
@@ -33,7 +33,7 @@ rviz2
 ros2 run rqt_image_view rqt_image_view
 ```
 
-<mark style="color:blue;">`rqt_image_view`</mark> is used to view images streamed from Image node. Once rviz is open, add interface for camera and image topics. Run the above command, refresh rqt\_image view and check if image is updating by driving the robot.
+`rqt_image_view` is used to view images streamed from Image node. Once rviz is open, add interface for camera and image topics. Run the above command, refresh rqt\_image view and check if image is updating by driving the robot.
 
 ### Tips:
 
@@ -45,17 +45,13 @@ The above command provides a list of all different type of image format our syst
 
 In some situations, we may need to compress images before sending it between systems.
 
-{% code overflow="wrap" %}
-
 ```sh
 ros2 run image_transport republish compressed raw --ros-args -r in/compresed:=/camera/image_raw/compressed -r out:=/camera/image_raw/uncompressed
 ```
 
-{% endcode %}
-
 ### Connecting and Streaming from a Real Camera
 
-To use a real camera, we need to install drivers. Let's begin by installing a v4l (video for linux) camera driver on <mark style="color:blue;">`@robot`</mark> system.
+To use a real camera, we need to install drivers. Let's begin by installing a v4l (video for linux) camera driver on `@robot` system.
 
 ```sh
 sudo apt install libraspberrypi-bin v4l-utils ros-foxy-v4l2-camera
@@ -84,7 +80,7 @@ gpu_mem=128
 camera_autodetect=0
 ```
 
-When you run get\_camera, it should say <mark style="color:blue;">`detected = 1`</mark> and <mark style="color:blue;">`supported=1`</mark>. If for some reason it still says not detected, then check camera cable if it is not connected, or is damaged.
+When you run get\_camera, it should say `detected = 1` and `supported=1`. If for some reason it still says not detected, then check camera cable if it is not connected, or is damaged.
 
 Now that the camera driver is installed and assuming everything is going good, we can initiate raspberry pi camera with the below command. However, do note that this does not do anything as there is no GUI or display attached to the robot. Run the script and check if there are any error messages.
 
@@ -102,13 +98,9 @@ v4l2-ctl --list-devices # this lists all video devices. xx-v4l2 is the one we ne
 
 Kill the `raspistill` service and type the following in a terminal
 
-{% code overflow="wrap" %}
-
 ```sh
 ros2 run v4l2_camera v4l2_camera_node --ros-args -p image_size:="[640,480]" -p camera_frame_id:=camera_link_optical
 ```
-
-{% endcode %}
 
 This will start steaming video from raspberry pi camera.
 

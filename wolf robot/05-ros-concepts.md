@@ -59,7 +59,7 @@ ros2 launch /path/to/launch/file # To run a launch file directly
 
 ### Creating a workspace
 
-A workspace is a directory where we keep all our project files in. One workspace can have multiple projects. Its a common practice to place all code under <mark style="color:blue;">`dev_ws`</mark> workspace.
+A workspace is a directory where we keep all our project files in. One workspace can have multiple projects. Its a common practice to place all code under `dev_ws` workspace.
 
 ```sh
 mkdir -p ~/dev_ws/src
@@ -77,7 +77,7 @@ ros2 pkg create --build-type ament_cmake test_package
 
 ### Test Package
 
-Once an empty package is created using the above script, open vscode and create two files called <mark style="color:blue;">`talker.launch.py`</mark> and <mark style="color:blue;">`listener.launch.py`</mark>
+Once an empty package is created using the above script, open vscode and create two files called `talker.launch.py` and `listener.launch.py`
 
 ```python
 # talker.launch.py
@@ -122,11 +122,11 @@ Update package.xml which provides any additional dependencies to build our packa
 <exec_depend>demo_nodes_py</exec_depend>
 ```
 
-Now that all the files are updated, run : <mark style="color:blue;">`colcon build --symlink-install`</mark>
+Now that all the files are updated, run : `colcon build --symlink-install`
 
 ### Testing the package
 
-First we need to source the workspace with : <mark style="color:blue;">`source install/setup.bash`</mark>. Make sure you are in the workspace directory.
+First we need to source the workspace with : `source install/setup.bash`. Make sure you are in the workspace directory.
 
 Now run the launch files:
 

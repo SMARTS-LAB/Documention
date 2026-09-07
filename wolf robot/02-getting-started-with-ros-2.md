@@ -6,8 +6,8 @@ ROS 1 was mostly used in academic projects while ROS 2 was developed so that it 
 
 More information on ROS 2 (Foxy Version) can be found in the following pages:
 
-{% embed url="<https://docs.ros.org/en/foxy/index.html>" %}
+[https://docs.ros.org/en/foxy/index.html](https://docs.ros.org/en/foxy/index.html)
 
 ### ROS 2 content
 
-<figure><img src="https://docs.veerobot.com/files/y198WXc9XdlW9P9oh4Ok" alt=""><figcaption><p>(picture from Ros2 wiki)</p></figcaption></figure>
+![ROS 2 content (picture from ROS 2 wiki)](images/ros2-content.webp)

@@ -4,13 +4,13 @@ Wolf has four motors connected to quadrature encoders. Users can control motors 
 
 ### Installing necessary packages
 
-To send serial commands from raspberry pi to micro controller board, we need to install `python3-serial package.` <mark style="color:orange;">Make sure to install the below package on the</mark> <mark style="color:blue;"><mark style="color:orange;">`@robot`<mark style="color:orange;"></mark> <mark style="color:blue;"><mark style="color:orange;"> </mark><mark style="color:blue;"><mark style="color:orange;">machine and not on the<mark style="color:orange;"></mark> <mark style="color:blue;"><mark style="color:orange;"> </mark><mark style="color:blue;"><mark style="color:orange;">`@dev`<mark style="color:orange;"></mark> <mark style="color:blue;"><mark style="color:orange;"> </mark><mark style="color:blue;"><mark style="color:orange;">machine.<mark style="color:orange;"></mark>
+To send serial commands from raspberry pi to micro controller board, we need to install `python3-serial package.` Make sure to install the below package on the `@robot` machine and not on the `@dev` machine.
 
 ```
 sudo apt install python3-serial
 ```
 
-Run `miniterm` with baud rate of `57600` (set on the micro controller board) on `USB0`. If unsure on which usb it is connected, check by typing <mark style="color:blue;">`lsusb`</mark>. If Lidar is also connected, board can be connected to USB0 or USB1. In later part of tutorial, we will see how to hard code a particular port for different peripherals. To exit miniterm, press CTRL+]
+Run `miniterm` with baud rate of `57600` (set on the micro controller board) on `USB0`. If unsure on which usb it is connected, check by typing `lsusb`. If Lidar is also connected, board can be connected to USB0 or USB1. In later part of tutorial, we will see how to hard code a particular port for different peripherals. To exit miniterm, press CTRL+]
 
 ```markup
     miniterm -e /dev/ttyUSB0 57600 #e for echo, USB0 is the port and 57600 is baud rate
@@ -43,50 +43,46 @@ BACKLEFT        2
 BACKRIGHT       3
 ```
 
-Type <mark style="color:blue;">`e`</mark> and it should output encoder count. If robot has not moved, it will echo <mark style="color:blue;">`0 0 0 0`</mark>
+Type `e` and it should output encoder count. If robot has not moved, it will echo `0 0 0 0`
 
-<mark style="color:red;">To run the robot, type the</mark> <mark style="color:blue;">m</mark> <mark style="color:red;">and</mark> <mark style="color:blue;">`o`</mark> <mark style="color:red;">commands. However, make sure robot wheels are not touching the ground, or it is safe to drive as it moves the robot for 2 seconds in the said speed.</mark>
+To run the robot, type the m and `o` commands. However, make sure robot wheels are not touching the ground, or it is safe to drive as it moves the robot for 2 seconds in the said speed.
 
 ### PWM based motor control
 
-<mark style="color:blue;">`o 127 127 127 127`</mark> # This will run the motors at 50% speed straight
+`o 127 127 127 127` # This will run the motors at 50% speed straight
 
-<mark style="color:blue;">`o -255 -255 -255 -255`</mark> # This will run the motors at 1000% speed reverse
+`o -255 -255 -255 -255` # This will run the motors at 1000% speed reverse
 
 ### Encoder based motor control
 
 Counts per rotation of wolf motor (CPR) is 560 and PID is running at 28hz. So, to get one rotation per second, we need to send 20 ticks. The Motor driver is designed to make sure it receives signal every 2 seconds. If any signal in 2 seconds, robot stops.
 
-<mark style="color:blue;">`m 20 20 20 20`</mark> # run the motor for 2 seconds at 1 revolutions per second
+`m 20 20 20 20` # run the motor for 2 seconds at 1 revolutions per second
 
 When trying encoder based motor control, the motor does not run complete two runs for 2 seconds. This is a latency issue due to Wi-Fi setup. If you set m to 25, then the wheels turn at exactly 1 revolutions per second. However, for continuous run, or navigation, it takes 20 ticks per revolution.
 
 Reset Encoder Count
 
-To reset the encoder count, type <mark style="color:blue;">`r`</mark> without any arguments. This resets all encoders to 0 (zero).
+To reset the encoder count, type `r` without any arguments. This resets all encoders to 0 (zero).
 
 ### GUI based motor Control
 
-Copy `serial_motor_demo` package from downloaded folder to <mark style="color:blue;">`dev_ws/src`</mark>. Push the package to your GitHub repository and clone the same package on the <mark style="color:blue;">`@robot`</mark> machine. If you need a direct link to download on your raspberry pi, clone the below repository on your pi.
+Copy `serial_motor_demo` package from downloaded folder to `dev_ws/src`. Push the package to your GitHub repository and clone the same package on the `@robot` machine. If you need a direct link to download on your raspberry pi, clone the below repository on your pi.
 
 ```sh
 git clone https://github.com/VEEROBOT/serial_motor_demo-main.git
 ```
 
-<mark style="color:blue;">`@robot`</mark>, type:
-
-{% code overflow="wrap" %}
+`@robot`, type:
 
 ```sh
 ros2 run serial_motor_demo driver --ros-args -p serial_port:=/dev/ttyUSB0 -p baud:=57600 -p loop_rate:=28 -p encoder_cpr:=560 # on the robot
 ```
 
-{% endcode %}
-
-<mark style="color:blue;">`@dev`</mark>, type:
+`@dev`, type:
 
 ```sh
 ros2 run serial_motor_demo gui # on the development machine
 ```
 
-Use the sliders on GUI to move motors either on raw speed mode (<mark style="color:blue;">o</mark>) or feedback mode (<mark style="color:blue;">`m`</mark>).
+Use the sliders on GUI to move motors either on raw speed mode (o) or feedback mode (`m`).

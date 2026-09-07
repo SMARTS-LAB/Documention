@@ -4,9 +4,8 @@ Wolf is a rugged and lightweight robot platform designed to be used as an easy-t
 
 Wolf includes a standard micro-controller board along with a motor controller to control 4 Motors. It is further extended using external controllers like a Raspberry Pi, Jetson Nano depending on the user requirement. The robot is ROS 2 compatible and can be controlled either with a Joystick, or commands from a PC or Laptop.
 
-{% hint style="info" %}
-Note: Please read the complete manual before operating the Robot. Wrong connections, incorrect wiring can lead to damage of the internal controller / motors / batteries.
-{% endhint %}
+> [!NOTE]
+> Note: Please read the complete manual before operating the Robot. Wrong connections, incorrect wiring can lead to damage of the internal controller / motors / batteries.
 
 ## Box Contents
 
@@ -36,7 +35,7 @@ The robot is assembled in the factory and ready to use right out of the box.
 * Complete water resistant design
 * LiDar with Connector
 
-<figure><img src="/files/XlXcfWdJUuqQIdE0SHJl" alt=""><figcaption></figcaption></figure>
+![Wolf robot](images/wolf-2.png)
 
 #### Features and specifications - Inside:
 
@@ -56,10 +55,10 @@ The robot is assembled in the factory and ready to use right out of the box.
 * Micro SD Card on Raspberry Pi with Ubuntu, ROS 2 systems installed
 * USB Serial Connection between Raspberry Pi and Micro-Controller Board
 
-<figure><img src="/files/XRK7g0weVoM3CLp0aLI7" alt=""><figcaption><p>Wireframe Design of Wolf</p></figcaption></figure>
+![Wireframe design of Wolf](images/wolf-outline.png)
 
 ### Wolf System Architecture
 
 Wolf has a robust controller which is built around a feature rich capable MCU with integrated Wi-Fi and Bluetooth connectivity for a wide range of applications. The block diagram shows how the controller is connected to peripherals.
 
-<figure><img src="/files/bB9QmsDeMc5hv4Z1Xuq7" alt=""><figcaption></figcaption></figure>
+![Wolf system architecture block diagram](images/wolf-architecture.png)

@@ -12,7 +12,7 @@ sudo apt install ros-foxy-gazebo-ros-pkgs
 
 ### Copying Gazebo example files
 
-Copy <mark style="color:blue;">`wolf-robot`</mark> folder from <mark style="color:blue;">`t3_gazebo_teleoperation`</mark> to <mark style="color:blue;">`src`</mark> folder in your workspace.
+Copy `wolf-robot` folder from `t3_gazebo_teleoperation` to `src` folder in your workspace.
 
 ```
 ros2 run joint_state_publisher_gui joint_state_publisher_gui use_sim_time:=true
@@ -55,14 +55,12 @@ We have created a construction world file called construction.world with few obj
 ros2 launch wolf-robot launch_sim.launch.py world:=./src/wolf-robot/worlds/construction.world
 ```
 
-Lastly, To check if <mark style="color:blue;">`cmd_val`</mark> is passed, type : <mark style="color:blue;">`ros2 topic echo /cmd_vel`</mark>
+Lastly, To check if `cmd_val` is passed, type : `ros2 topic echo /cmd_vel`
 
-{% hint style="info" %}
-For the next tutorial, we may have to replace the files again. If you have any comparison tools, its best to compare the folders and check what has changed and what has not.
+> [!NOTE]
+> For the next tutorial, we may have to replace the files again. If you have any comparison tools, its best to compare the folders and check what has changed and what has not.
+>
+> Also, open VSCode and check the flow of files launched and nodes started.
 
-Also, open VSCode and check the flow of files launched and nodes started.
-{% endhint %}
-
-{% hint style="info" %}
-Those of you who are using github, can use it to directly upload code from the terminal and keep track of all changes. After the end of each tutorial, push changes to github and verify what has changed.
-{% endhint %}
+> [!NOTE]
+> Those of you who are using github, can use it to directly upload code from the terminal and keep track of all changes. After the end of each tutorial, push changes to github and verify what has changed.

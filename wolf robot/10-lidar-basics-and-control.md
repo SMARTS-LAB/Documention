@@ -18,7 +18,7 @@ Wolf uses RPLIDAR A1 which runs clockwise to perform a 360 degree omnidirectiona
 
 ### LiDAR Data in Simulation
 
-To simulate LiDar in Gazebo and Rviz, copy `wolf-robot` folder from<mark style="color:blue;">`t5_lidar_interface`</mark> to workspace. Run Gazebo with our previous construction world:
+To simulate LiDar in Gazebo and Rviz, copy `wolf-robot` folder from`t5_lidar_interface` to workspace. Run Gazebo with our previous construction world:
 
 ```sh
 ros2 launch wolf-robot launch_sim.launch.py world:=./src/wolf-robot/worlds/construction.world
@@ -34,7 +34,7 @@ You can see the scanned data in Gazebo. Run rviz2 to see obstacle points on Rviz
 
 ### LiDAR on a Real Robot
 
-We need to install LiDAR package to communicate and control our LiDAR. Install the package <mark style="color:blue;">`@robot`</mark> and *not* on the <mark style="color:blue;">`@dev`</mark> machine.
+We need to install LiDAR package to communicate and control our LiDAR. Install the package `@robot` and *not* on the `@dev` machine.
 
 ```sh
 sudo apt install ros-foxy-rplidar-ros
@@ -42,13 +42,9 @@ sudo apt install ros-foxy-rplidar-ros
 
 In the next terminal, run rplidar\_composition
 
-{% code overflow="wrap" %}
-
 ```sh
 ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/ttyUSB1 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard #Upper case S
 ```
-
-{% endcode %}
 
 Since there are two devices connected to USB, it sometimes may clash and not respond. To assign a port for a sensor:
 
@@ -59,13 +55,9 @@ ls /dev/serial/by-path # This gives the location of serial port connected. If we
 
 Note down the path of LiDAR and update \<path> in command below.
 
-{% code overflow="wrap" %}
-
 ```sh
 ros2 run rplidar_ros rplidar_componsition --ros-args -p serial_port:=/dev//dev/serial/by-path/<path> -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
 ```
-
-{% endcode %}
 
 We can also find more details of the device if required. Connect USB device (only 1) to laptop and type as below
 
@@ -94,7 +86,7 @@ lsusb #this gives the list of devices connected
 
 ```
 
-To start or stop the motor, type the following command on <mark style="color:blue;">`@dev`</mark> machine to run service:
+To start or stop the motor, type the following command on `@dev` machine to run service:
 
 ```sh
 ros2 service call /start_motor std_srvs/srv/Empty {}    # to start the motor
@@ -109,7 +101,7 @@ ros2 service list # This provides a list of services being run
 
 ### Launch File
 
-All the commands to run and control LiDAR is placed in a launch file. To launch LiDAR control, type the following on <mark style="color:blue;">`@robot`</mark> machine:
+All the commands to run and control LiDAR is placed in a launch file. To launch LiDAR control, type the following on `@robot` machine:
 
 ```sh
 ros2 launch wolf-robot rplidar.launch.py #check and add package name
